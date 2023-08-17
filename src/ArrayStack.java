@@ -20,6 +20,19 @@ public class ArrayStack implements Cloneable {
         data = new int[initialCapacity]; // Allocates memory for an array with a specified capacity value
     }
 
+    public boolean search(int element) {
+        if (manyItems == 0) {
+            throw new EmptyStackException();
+        }
+
+        for (int i = data.length - 1; i >= 0; i--) {
+            if (element == data[i]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void push(int item) throws OutOfMemoryError {
         if (manyItems == data.length) {
             ensureCapacity((manyItems * 2) + 1);
@@ -42,7 +55,7 @@ public class ArrayStack implements Cloneable {
         if (manyItems == 0) {
             throw new EmptyStackException();
         }
-        return data[manyItems - 1];
+        return data[manyItems - 1]; // returns the last index of the array
     }
 
     @Override
@@ -73,12 +86,24 @@ public class ArrayStack implements Cloneable {
         }
     }
 
+    public void reverseStack() {
+        for (int i = 0; i < data.length; i++) {
+            System.out.println(data[i]);
+        }
+    }
+
+    public void clearStack() {
+        for (int i = data.length - 1; i >= 0; i--) {
+            data[i] = 0;
+        }
+    }
+
     public int getCapacity() {
         return data.length;
     }
 
     public int size() {
-        return manyItems;
+        return manyItems; // Return the number of elements within the Stack
     }
 
     public boolean isEmpty() {
